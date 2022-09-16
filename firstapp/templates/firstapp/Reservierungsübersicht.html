@@ -1,0 +1,99 @@
+{% extends 'firstapp/base.html' %}
+
+{% block title %}Reservierungsübersicht{% endblock title %}
+
+{% block body %}
+
+<div class="row" style="background-color:lightblue">
+  <h1 id ="sitename" class="col-11"><b>Reservierungsübersicht</b></h1>
+  <div class="dropstart col-1 align-self-center">
+    <div class="menu" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false" onclick="transformFunction(this)">
+      <div class="menuBar1"></div>
+      <div class="menuBar2"></div>
+      <div class="menuBar3"></div>
+    </div>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+      <li><span class="dropdown-item-text" style="background-color: lightblue">logged in: {{request.user}}</span></li>
+      <li><a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: right">My Profil</a>
+      <li><a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: right">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+  <nav>
+      <a href="{% url 'Übersicht' %}">Homepage</a>
+      
+    </nav>
+  {% for message in messages %}
+    <p>{{message}}</p>
+  {% endfor %}
+  <!-- {{message.success}}
+  {{message.error}} -->
+  <div>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm2" name="suche" type="search" placeholder="search for..." aria-lable="Search">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="container-fluid">
+    <div class="table-responsive">
+      <table id="mainTable" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><a class="table-head-button" href="?order_by=tag_system">Ressource Title</a></th>
+            <th><a class="table-head-button" href="?order_by=title">date</a></th>
+            <th><a class="table-head-button" href="?order_by=title">user</a></th>
+            <th>Reservations</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for re in reservierte %}
+              <tr>
+                <td class="col-sm-1">{{re.clusterr}}</td>
+                <td class="col-sm-2">{{re.date}}</td>
+                <td class="col-sm-2">{{re.user}}</td>
+                {%if cl.availability == True %}
+                  <td class="col-sm-1">
+                    <a class="btn btn-outline-secondary" href="{% url 'bookSlot' cl.id user.id %}" role="button">reserve</a>
+                  </td>
+                  {%else%}
+                  <td class="col-sm-1">
+                    <a class="btn btn-danger" href="{% url 'deleteReservation' re.id %}" role="button" >delete</a>
+                  </td>
+                {% endif %}
+              </tr>  
+            {% endfor %}
+        </tbody>
+      </table>  
+    </div>
+  </div>
+
+{% endblock body %}
+
+{% block css %}
+  <style>
+    h1 { /* !important deleted, base.html h1 will now apply */
+      padding: 20px;
+      text-align: left;
+      text-decoration-color: aqua;
+      font-size: 40px;
+      background-color: rgb(0, 194, 194);
+    }
+    #logged-in-as {
+      padding: 8px 4px;
+    }    
+    h3 {
+      margin: 25px 20%;
+      padding: 10px;
+      background-color: lightgreen;
+    }
+  </style>
+{% endblock css %}
+    
+{% block javascript %}
+  <script>
+    
+  </script>
+{% endblock javascript %}

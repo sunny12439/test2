@@ -1,0 +1,70 @@
+{% extends 'firstapp/base.html' %}
+{% load static %}
+
+{% block title %}Reservation{% endblock title %}
+
+{% block body %}
+<h1 id="sitename"><b>Choose Time Slot</b></h1>
+
+
+  <nav>
+    <a href="{% url 'homestudi' %}">Homepage</a>
+  </nav>
+  
+  <div class="container-fluid w-50">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Tag</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sm-1">{{cluster.tag_system}}</td>
+          <td class="col-sm-2">{{cluster.title}}</td>
+          <td class="col-lg-6">{{cluster.Beschreibung}}</td>
+        </tr>  
+      </tbody>
+    </table>  
+    <h5><strong>USER:</strong> 
+      <a class="btn btn-info btn-lg" role="button">{{user}}</a>
+    </h5> 
+  </div>
+  {{message.error}}
+  <!--   <form action= "" method="post">
+    {%csrf_token%}
+    <p>{{form.date}}</p>
+    <button type="submit" class="btn btn-primary">Reserve (Default Form)</button>
+  </form> -->
+  <div class="text-center">
+    <form action= "" method="post"> 
+      {%csrf_token%}
+      {{ form.as_p }}
+      <input type="submit" value="reserve" />
+    </form> 
+  </div>
+{% endblock body %}
+
+{% block css %}
+  <style>
+    label {
+      font-size: 18px;
+    }
+    input {
+      display: block;
+      margin : 0px auto 20px;
+      font-size: 18px;
+    }
+    input[disabled] {
+      border: 0;
+    }
+  </style>
+{% endblock css %}
+
+{% block javascript %}
+  <script>
+
+  </script>
+{% endblock javascript %}

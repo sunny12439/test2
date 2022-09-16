@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
-import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,17 +30,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
-
 INSTALLED_APPS = [
     'firstapp',
-    #'firstapp.apps.FirstappConfig',
+    'fontawesomefree',
+    # 'firstapp.apps.FirstappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -120,13 +119,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_URL = 'static/'
+#Email verschicken hhjvryvxbuuklhyz
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'simpleslot30@gmail.com'
+EMAIL_HOST_PASSWORD = 'hhjvryvxbuuklhyz'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+#DEFAULT_FROM_EMAIL ='simple.slot@yahoo.com'
 
-
-STATIC_URL = '/static/'
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR,'static'),
-]
-STATIC_ROOT = '/home/centostest/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

@@ -1,0 +1,128 @@
+{% extends 'firstapp/base.html' %}
+{% load static %}
+
+{% block title %}Homepage Studi{% endblock title %}
+
+{% block body %}
+
+<header class="bg-dark text-white" style="margin-bottom: 50px">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pb-4 pb-lg-0">
+            <a class="nav-link" href="{% url 'homestudi' %}">
+                <img class="logo" src="{% static 'images/logo-noBG.png' %}" alt="logo" />
+            </a>
+
+            <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center ">
+                <h3><b> Control Board </b></h3>
+            </div>
+
+            <a class="nav-link text-white" href="{% url 'AdminResControl' %}">Manage Reservations</a>
+            <a class="nav-link text-white" href="{% url 'Übersicht' %}">Homepage</a>
+            <a class="nav-link text-white" href="{% url 'New' %}">New Ressource</a>
+
+
+            <form class="col-12 col-lg-auto  me-lg-3" role="search">
+                <input class="form-control form-control-dark text-white bg-dark" name="suche" type="search"
+                    placeholder="search for..." aria-lable="Search">
+            </form>
+
+            <div class="text-end">
+                <div class="dropdown">
+                    <div id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="menuBar1" style="background-color:white"></div>
+                        <div class="menuBar2" style="background-color:white"></div>
+                        <div class="menuBar3" style="background-color:white"></div>
+                    </div>
+                    <div style="background-color: lightblue" class="dropdown-menu" aria-labelledby="dropdownMenu">
+                        <span class="dropdown-item-text" style="background-color: lightblue">logged in:
+                            {{request.user}}</span>
+                        <a class="dropdown-item" href="{% url 'profile' user.id %}" style="text-align: left">My
+                            Profil</a>
+                        <a class="dropdown-item" href="{% url 'Logout' %} " style="text-align: left">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+<!-- {{message.success}}
+  {{message.error}} -->
+
+    <div class="container-fluid " style="max-width: 1200px"></div>
+        {% for us in users_list %}
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> <a class="btn btn-info btn-lg" role="button">{{us}}</a> </th>
+                                <th scope="col"> reserved </th>
+                                <th class="table-primary" scope="col">Date</th>
+                                <th scope="col">timeslots</th>
+                                <th scope="col">actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for res in res_dicts %}
+                            {% if us == res.user %}
+                            <tr>
+                                <th></th>
+                                <th>{{res.reservation.clusterr.title}}</th>
+                                <td class="table-primary">{{res.reservation.date}}</td>
+                                {% if res.not_av_slots|length == 7 %}
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-12"
+                                            style="display: flex; flex-direction: row;justify-content: center;align-items:center;">
+                                            <button class="btn btn-dark" href="" role="button">fully booked</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                {%else%}
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-12"
+                                            style="display: flex; flex-direction: row;justify-content: center;align-items:center;">
+                                            {% for sl in res.not_av_slots %}
+                                            <a class="btn btn-secondary" href="" role="button">{{sl}}</a> &nbsp
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </td>
+                                {% endif %}
+                                <td class="col-sm-3">
+                                    <a class="btn btn-light" role="button">manage</a>
+                                    <a class="btn btn-danger" href="{% url 'deleteResAdmin' res.id %}" role="button">delete</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+        {% endfor %}
+    </div>
+
+
+
+
+
+{% endblock body %}
+
+{% block css %}
+<style>
+    #logged-in-as {
+        padding: 8px 4px;
+    }
+</style>
+{% endblock css %}
+
+{% block javascript %}
+<script>
+
+</script>
+{% endblock javascript %}

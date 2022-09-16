@@ -1,0 +1,78 @@
+{% extends 'firstapp/base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block body %}
+  <h1 id="sitename"><b>Register</b></h1>
+<div class="center">
+  <form method="POST" action="">
+    <div class="text-center">
+      {% csrf_token %}
+      <p><b>{{form.username.label}}</b></p>
+      <div class="input-group">
+        <span class="input-group-text btn blue" ><i class="fa fa-user"></i></span>
+        {{form.username}}
+        <span class="input-group-text btn blue" title="    * Max 150 characters. Letters, digits and @ . + - _ only."><i class="fa fa-info"></i></span>
+      </div>
+
+      <p><b>{{form.password1.label}}</b></p>
+      <div class="input-group">
+        <span class="input-group-text btn blue" ><i class="fa fa-lock"></i></span>
+        {{form.password1}}
+        <span class="btn blue" title="    * Your password can't be too similar to your other personal information.
+      * Your password must contain at least 8 characters.
+      * Your password can't be a commonly used password.
+      * Your password can't be entirely numeric."><i class="fa fa-info"></i></span>
+      </div>
+
+      <p><b>{{form.password2.label}}</b></p>
+      <div class="input-group">
+        <span class="input-group-text btn blue" ><i class="fa fa-lock"></i></span>
+        {{form.password2}}
+        <span class="btn blue" title="    * Enter the same password again."><i class="fa fa-info"></i></span>
+      </div>
+      
+      <p><b>{{user_profile_form.email.label}}</b></p>
+      <div class="input-group">
+        <span class="input-group-text btn blue" > &#xF32F</span>
+        {{user_profile_form.email}}
+        <span class="btn blue" title="    * Can be empty."><i class="fa fa-info"></i></span>
+      </div>
+
+      <p><b>{{user_profile_form.matrikelnummer.label}}</b></p>
+      <div class="input-group">
+        <span class="input-group-text btn blue" ><i class="fa fa-lock"></i></span>
+        {{user_profile_form.matrikelnummer}}
+        <span class="btn blue" title="    * Must be unique, like your real TU-Number."><i class="fa fa-info"></i></span>
+      </div>
+
+      <p></p> 
+      <p><button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 40px">Register</button></p>
+    </div>
+  </form>
+</div>
+  <div class="text-center">
+    <p>Already registered?</p>
+    <a class="btn btn-secondary round" href="{% url 'Login' %}" role="button">Login</a>  
+  </div>
+  <div class="text-center">
+    </br>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {{form.errors}}
+    {{form.success}}
+  </div>
+{% endblock body %}
+
+{% block css %}
+  <style>
+  
+  </style>
+{% endblock css %}
+  
+{% block javascript %}
+  <script>
+  
+  </script>
+{% endblock javascript %}

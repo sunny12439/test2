@@ -1,0 +1,82 @@
+body {
+	margin: 0px;
+	background-color: aliceblue;
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+header {
+	background-color: cornflowerblue;
+	color: white;
+	font-weight: bold;
+	font-size: 24px;
+	padding: 10px 10px;
+	box-shadow: 0px 0px 12px grey;
+}
+
+header img {
+	vertical-align: middle;
+	margin-right: 12px;
+}
+
+.chirper-col h1 {
+	text-align: center;
+	padding: 10px;
+	border: 1px dotted black;
+}
+
+h2 {
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px dotted black;
+}
+
+h2:first-letter {
+	color: cornflowerblue;
+}
+
+.chirper-card {
+	background-color: white;
+	border-radius: 12px;
+	box-shadow: 0px 6px 12px grey;
+	padding: 20px;
+	margin-bottom: 20px;
+	display: flex;
+}
+
+.chirper-card img {
+	width: 64px;
+	height: 64px;
+	border-radius: 32px;
+	margin-right: 12px;
+	flex: none;
+}
+
+.chirper-card:last-child {
+	margin: 0;
+}
+
+.chirper-col {
+	padding: 10px;
+}
+
+.chirper-col:first-child .chirper-card:nth-child(2) {
+	background-color: antiquewhite;
+}
+
+.chirper-col:last-child .chirper-card {
+	background-color: antiquewhite;
+}
+
+.chirper-cols {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr
+}
+
+@media only screen and (min-width: 720px) {
+	.chirper-cols { grid-template-columns: 1fr 1fr}
+}
+
+@media only screen and (min-width: 960px) {
+	.chirper-cols { grid-template-columns: 1fr 1fr 1fr}
+}

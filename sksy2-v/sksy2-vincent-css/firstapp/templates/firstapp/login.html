@@ -1,0 +1,119 @@
+{% extends 'firstapp/base.html' %}
+{% load static %}
+{% block title %}User Login{% endblock title %}
+
+{% block body %}
+    <div class="d-flex flex-row align-items-center">
+      <div>
+        <img class="logo" src="{% static 'images/logo.jpg'%}" alt="ASDSAD" onclick="javascript:window.location='http://127.0.0.1:8000/cls/';" on/>
+      </div>
+      <div class="spacer" style="background-color:rgb(255, 255, 255)">
+      </div>
+      <div>
+        <h1 id="loginTitle"><b> SimpleSlot </b></h1>
+      </div>
+
+    </div>
+
+
+  <!-- <h2 id="sitename"><b>Login</b></h2> -->
+
+<div>
+  {% for message in messages %}
+  <p>{{message}}</p>
+  {% endfor %}
+</div>
+
+<div class="row" id="imageLoginBackground" >
+<!--credits: https://getbootstrap.com/docs/5.2/examples/heroes/-->
+<div class="container col-xl-8 px-5 py-5">
+  <div class="row align-items-center px-5 py-5">
+    <div class="col-lg-6 text-center text-lg-start">
+      <h1 class="display-4" style="font-family: Georgia" >SimpleSlot Login</h1>
+      <p class="col-lg-10 fs-4">
+        Log into a new world of the TU and experience real beauty and functionality, today!
+      </p>
+    </div>
+    <div class="col-lg-6 mx-auto col-lg-6">
+      <div class="text-center mt-5">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-4">
+            <span class="input-group-text blue w35px"><i class="fa fa-user"></i></span>
+            <input type="text" name="username" class="form-control" placeholder="Username" required />
+          </div>
+          <div class="input-group mb-4">
+            <span class="input-group-text blue w35px"><i class="fa fa-lock"></i></span>
+            <input type="password" name="password" class="form-control" placeholder="Passwort" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 80px">Login</button>
+        </form>
+        <div class="text-center mt-2">
+          <p>No account yet?</p>
+          <a class="btn btn-secondary round" href="{% url 'Register' %}" role="button">Register</a>  
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- 
+<div class="max600 center">
+  <div class="text-center">
+    <div class="col justify-content-center">
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-4">
+          <span class="input-group-text blue w35px"><i class="fa fa-user"></i></span>
+          <input type="text" name="username" class="form-control" placeholder="Username" required />
+        </div>
+        <div class="input-group mb-4">
+          <span class="input-group-text blue w35px"><i class="fa fa-lock"></i></span>
+          <input type="password" name="password" class="form-control" placeholder="Passwort" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg round" style="padding:10px 80px">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <hr/>
+  <div class="text-center">
+    <p>No account yet?</p>
+    <a class="btn btn-secondary round" href="{% url 'Register' %}" role="button">Register</a>  
+  </div>
+</div> 
+-->
+{% endblock body %}
+
+{% block css %}
+<style>
+  /* @media (min-width: 576px){ */
+  #loginTitle {
+    color:rgb(0, 194, 194);
+    padding: 30px 100px;
+    font-size: 60px;
+    text-align: center;
+  }
+  #imageLoginBackground {
+    background-image: url('../../static/images/laptop-typing.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    /* background-size: auto 100%; */
+    background-size:cover;
+    height:80vh;
+    
+  }
+</style>
+{% endblock css %}
+
+{% block javascript %}
+<script>
+  
+</script>
+{% endblock javascript %}
