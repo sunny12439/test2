@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>Registrieren</title>
+</head>
+
+<body>
+  <h1><b>Registrieren</b></h1>
+  <form method="POST" action="">
+    <div class="text-center">
+      {{form.errors}}
+      {{form.success}}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+      {% csrf_token %}
+      <!-- {{form.as_p}} comes with help_texts -->
+      <p><b>{{form.username.label}}</b></p>
+      <p>{{form.username}}</p>
+      <span><ul>
+        <li>max 150 characters. Letters, digits and @ . + - _ only.</li>
+      </ul></span>
+
+      <p><b>{{form.password1.label}}</b></p>
+      <p>{{form.password1}}</p>
+      <span><ul>
+        <li>Your password can't be too similar to your other personal information.</li>
+        <li>Your password must contain at least 8 characters.</li>
+        <li>Your password can't be a commonly used password.</li>
+        <li>Your password can't be entirely numeric.</li>
+      </ul></span>
+
+      <p><b>{{form.password2.label}}</b></p>
+      <p>{{form.password2}}</p>
+      <p><button type="submit" class="btn btn-primary btn-lg">Registrieren</button></p>
+    </div>
+  </form>
+
+  <!-- old register form, replaced with above django form
+  <form method="POST" action="" style="border:1px solid #ccc">
+    <div class="text-center">
+        <div class="col justify-content-center">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputName">Name</label>
+              <input type="text" id="inputName" class="form-control" placeholder="Name" required />
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputNr">Matrikelnummer</label>
+              <input type="text" id="inputNr" class="form-control" placeholder="Matrikelnummer" required />
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputPassword">Passwort</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" required />
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="repeatPassword">Passwort wiederholen</label>
+              <input type="password" id="repeatPassword" class="form-control" placeholder="Passwort wiederholen" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="padding:10px 80px">Login</button>
+          </form>
+        </div>
+      </div>
+  </form> -->
+  <div class="text-center">
+    <p>Bereits registriert?</p>
+    <a class="btn btn-secondary" href="{% url 'Login' %}" role="button">Anmelden</a>  
+  </div>
+</body>
+
+<style>
+  h1 {
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  background-color: rgb(207, 87, 87);
+  }
+
+</style>
+
+
+<!-- Bootstrap functionality -->
+<script 
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+	crossorigin="anonymous">
+</script>
+
+</html>

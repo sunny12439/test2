@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <title>Übersicht</title>
+    <meta name="author" content="Vincent Wehr, Federica Faßbender">
+    <meta name="keywords" content="Hausarbeit, Praktikum">
+    <meta charset="UTF-8"/>
+
+    <!-- Bootstrap, scale for mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap source -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+          crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <h1><b>Admin Übersicht</b></h1>
+    </header>
+
+    <nav>
+        <a href="{% url 'Übersicht' %}">Übersicht</a>
+        <a href="{% url 'New' %}">Neue Ressource</a>
+        <a href="{% url 'Übersicht' %}">Mein Profil</a>
+        <a href="{% url 'Login' %}">Login</a>
+        
+    </nav>
+
+
+    <h3>Cluster Liste </h3>
+    
+    <nav class="navbar">
+      <span>Logged in: {{request.user}}</span>
+      <a href="{% url 'Logout' %}" class="btn btn-info btn-lg">Logout</a>
+    </nav>
+    
+    <div class="container-fluid">
+      <div class="table-responsive">
+        <table id="mainTable" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Quantity</th>
+              <th>Duration in days</th>
+              <th>Availability</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cl in cluster %}
+              <tr>
+                <td class="col-lg-6">{{cl.title}}</td>
+                <td class="col-sm-2">{{cl.quantity}}</td>
+                <td class="col-sm-1">{{cl.duration}}</td>
+                <td class="col-sm-1">
+                  <a class="btn btn-outline-secondary" href="" role="button">free dates</a>
+                  <a class="btn btn-outline-secondary" href="" role="button">taken dates</a>
+                </td>
+                <td class="col-sm-3">
+                  <a class="btn btn-primary" href="{% url 'edit' cl.id %}" role="button">&#x270E</a>
+                  <a class="btn close" href="{% url 'delete' cl.id %}" role="button">&#9747</a>
+                </td>
+              </tr> 
+            {% endfor %}
+          </tbody>
+        </table>  
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <a href="{% url 'Impressum' %}">Impressum</a>
+      </div>
+      </footer>
+</body>
+
+<!-- Javascript -->
+<script>
+
+</script>
+
+<!-- CSS -->
+<style>
+h1 {
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  background-color: rgb(207, 87, 87);
+}
+nav {
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  background-color: lightgrey;
+  color: black;
+}
+a {
+  color:darkslategrey;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-decoration: none;
+}
+h3 {
+  margin: 25px 20%;
+  padding: 10px;
+  background-color: lightgreen;
+  text-align: center;
+}
+.close {
+  padding: 7px 17px;
+  background-color: lightsalmon;
+}
+.close:hover {
+  background-color: #f44336;
+}
+
+	
+html {
+	position: relative; /* relative positioning to help positioning the footer */
+	min-height: 100%; /* set min-height to help positioning the footer */
+}
+ 
+body {
+    margin-bottom: 100px; 	/* height of the footer must be specified as margin */
+}
+ 
+.footer {
+    position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+</style>
+  
+
+<!-- Bootstrap functionality -->
+<script 
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+	crossorigin="anonymous">
+</script>
+
+</html>

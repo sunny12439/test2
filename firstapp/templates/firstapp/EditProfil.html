@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Profilbearbeitung</title>
+    <meta name="keywords" content="Hausarbeit,Praktikum">
+    <meta charset="UTF-8"/>
+
+    <!-- Bootstrap, scale for mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Source -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+          crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <h1><b>Mein Profil bearbeiten</b></h1>
+</header>
+<nav>
+  <a href="{% url 'Übersicht' %}">Übersicht</a>
+  <a href="{% url 'New' %}">Neues TODO</a>
+
+</nav>
+
+<form method="POST" action="">
+    <div class="text-center">
+      {{form.errors}}
+      {{form.success}}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+      {% csrf_token %}
+    
+      <button type="submit" class="btn btn-primary btn-lg">Änderungen akzeptieren</button>
+    </div>
+  </form>
+
+<footer class="footer">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    <a href="{% url 'Impressum' %}">Impressum</a>
+  </div>
+  </footer>
+</body>
+
+<!-- CSS -->
+<style>
+h1 {
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+    background-color: rgb(207, 87, 87);
+}
+nav {
+    padding: 5px;
+    margin: 0 0 20px;
+    text-align: center;
+    font-size: 20px;
+    width: 100%;
+    background-color: lightgrey;
+    color: black;
+}
+a {
+    color:darkslategrey;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+}
+
+ 
+.footer {
+    position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+</style>
+
+<!-- Javascript -->
+<script>
+
+</script>
+
+<!-- Bootstrap functionality -->
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+    crossorigin="anonymous">
+</script>
+
+</html>
+
